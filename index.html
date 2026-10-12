@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Physics Worksheets</title>
+<title>IBDP Physics By Sanjith Chellamuthu</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400&display=swap">
 <style>
 /* Layout: a working column of question cards with a pinned tracker rail on the right; rail folds to a strip on phones. */
@@ -133,6 +133,7 @@ aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:flex
 .tag{display:inline-block;font-family:var(--body);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:1px 6px;margin:4px 6px 0 0;vertical-align:middle}
 .tag.hl{background:var(--accent-soft);color:var(--accent)}
 .tag.x{background:var(--flag-soft);color:var(--flag)}
+.tag.bk{background:var(--done-soft);color:var(--done)}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;margin:0 2px;line-height:1.25}
 .fr>span:first-child{border-bottom:1px solid currentColor;padding:0 3px 1px}
 .fr>span:last-child{padding:1px 3px 0}
@@ -333,124 +334,124 @@ D4:[
 const FORMULAS={
 A1:[
 {d:'Average velocity',f:'v_{av} = {Δs|Δt}',s:'Δs displacement, Δt time taken',x:1},
-{d:'Equations of motion (constant acceleration)',f:'s = {(u + v)t|2}',s:'s displacement, u initial velocity, v final velocity, t time'},
-{d:'',f:'v = u + at',s:'a acceleration'},
-{d:'',f:'s = ut + ½at^{2}',s:''},
-{d:'',f:'v^{2} = u^{2} + 2as',s:''},
+{d:'Equations of motion (constant acceleration)',f:'s = {(u + v)t|2}',s:'s displacement, u initial velocity, v final velocity, t time',b:1},
+{d:'',f:'v = u + at',s:'a acceleration',b:1},
+{d:'',f:'s = ut + ½at^{2}',s:'',b:1},
+{d:'',f:'v^{2} = u^{2} + 2as',s:'',b:1},
 {d:'Projectile components',f:'u_{x} = u cos θ    u_{y} = u sin θ',s:'θ launch angle above the horizontal',x:1},
 {d:'Time to maximum height',f:'t = {u sin θ|g}',s:'',x:1},
 {d:'Range on level ground',f:'R = {u^{2} sin 2θ|g}',s:'',x:1}
 ],
 A2:[
-{d:'Newton\'s second law',f:'F = ma = {Δp|Δt}',s:'F resultant force, m mass, a acceleration, p momentum'},
-{d:'Weight',f:'F_{g} = mg',s:'g gravitational field strength'},
-{d:'Static friction',f:'F_{f} ≤ μ_{s}F_{N}',s:'μ_{s} coefficient of static friction, F_{N} normal force'},
-{d:'Dynamic friction',f:'F_{f} = μ_{d}F_{N}',s:'μ_{d} coefficient of dynamic friction'},
-{d:'Hooke\'s law',f:'F_{H} = −kx',s:'k spring constant, x extension'},
-{d:'Stokes\' law (viscous drag)',f:'F_{d} = 6πηrv',s:'η viscosity, r sphere radius, v speed'},
-{d:'Buoyancy',f:'F_{b} = ρVg',s:'ρ fluid density, V volume of fluid displaced'},
-{d:'Momentum',f:'p = mv',s:''},
-{d:'Impulse',f:'J = FΔt = Δp',s:'J impulse, F average force, Δt contact time'},
-{d:'Centripetal acceleration',f:'a = {v^{2}|r} = ω^{2}r = {4π^{2}r|T^{2}}',s:'r radius, ω angular velocity, T period'},
-{d:'Speed in a circle',f:'v = {2πr|T} = ωr',s:''},
+{d:'Newton\'s second law',f:'F = ma = {Δp|Δt}',s:'F resultant force, m mass, a acceleration, p momentum',b:1},
+{d:'Weight',f:'F_{g} = mg',s:'g gravitational field strength',b:1},
+{d:'Static friction',f:'F_{f} ≤ μ_{s}F_{N}',s:'μ_{s} coefficient of static friction, F_{N} normal force',b:1},
+{d:'Dynamic friction',f:'F_{f} = μ_{d}F_{N}',s:'μ_{d} coefficient of dynamic friction',b:1},
+{d:'Hooke\'s law',f:'F_{H} = −kx',s:'k spring constant, x extension',b:1},
+{d:'Stokes\' law (viscous drag)',f:'F_{d} = 6πηrv',s:'η viscosity, r sphere radius, v speed',b:1},
+{d:'Buoyancy',f:'F_{b} = ρVg',s:'ρ fluid density, V volume of fluid displaced',b:1},
+{d:'Momentum',f:'p = mv',s:'',b:1},
+{d:'Impulse',f:'J = FΔt = Δp',s:'J impulse, F average force, Δt contact time',b:1},
+{d:'Centripetal acceleration',f:'a = {v^{2}|r} = ω^{2}r = {4π^{2}r|T^{2}}',s:'r radius, ω angular velocity, T period',b:1},
+{d:'Speed in a circle',f:'v = {2πr|T} = ωr',s:'',b:1},
 {d:'Centripetal force',f:'F = {mv^{2}|r} = mω^{2}r',s:'',x:1}
 ],
 A3:[
-{d:'Work done',f:'W = Fs cos θ',s:'s displacement, θ angle between force and displacement'},
-{d:'Kinetic energy',f:'E_{k} = ½mv^{2} = {p^{2}|2m}',s:''},
-{d:'Gravitational potential energy (near Earth)',f:'ΔE_{p} = mgΔh',s:'Δh change in height'},
-{d:'Elastic potential energy',f:'E_{H} = ½k(Δx)^{2}',s:'Δx extension or compression'},
-{d:'Power',f:'P = {ΔW|Δt} = Fv',s:'v velocity'},
-{d:'Efficiency',f:'η = {E_{output}|E_{input}} = {P_{output}|P_{input}}',s:'useful output over total input'},
+{d:'Work done',f:'W = Fs cos θ',s:'s displacement, θ angle between force and displacement',b:1},
+{d:'Kinetic energy',f:'E_{k} = ½mv^{2} = {p^{2}|2m}',s:'',b:1},
+{d:'Gravitational potential energy (near Earth)',f:'ΔE_{p} = mgΔh',s:'Δh change in height',b:1},
+{d:'Elastic potential energy',f:'E_{H} = ½k(Δx)^{2}',s:'Δx extension or compression',b:1},
+{d:'Power',f:'P = {ΔW|Δt} = Fv',s:'v velocity',b:1},
+{d:'Efficiency',f:'η = {E_{output}|E_{input}} = {P_{output}|P_{input}}',s:'useful output over total input',b:1},
 {d:'Energy density',f:'energy density = {energy released|volume}',s:'specific energy uses mass instead of volume',x:1}
 ],
 A4:[
-{d:'Torque',f:'τ = Fr sin θ',s:'r distance from axis, θ angle between r and F',hl:1},
-{d:'Rotational equations of motion',f:'Δθ = {(ω_{f} + ω_{i})t|2}',s:'θ angle (rad), ω angular velocity, α angular acceleration',hl:1},
-{d:'',f:'ω_{f} = ω_{i} + αt',s:'',hl:1},
-{d:'',f:'Δθ = ω_{i}t + ½αt^{2}',s:'',hl:1},
-{d:'',f:'ω_{f}^{2} = ω_{i}^{2} + 2αΔθ',s:'',hl:1},
-{d:'Moment of inertia (point masses)',f:'I = Σmr^{2}',s:'r distance of each mass from the axis',hl:1},
-{d:'Newton\'s second law for rotation',f:'τ = Iα',s:'',hl:1},
-{d:'Angular momentum',f:'L = Iω',s:'',hl:1},
-{d:'Angular impulse',f:'ΔL = τΔt = Δ(Iω)',s:'',hl:1},
-{d:'Rotational kinetic energy',f:'E_{k} = ½Iω^{2} = {L^{2}|2I}',s:'',hl:1},
+{d:'Torque',f:'τ = Fr sin θ',s:'r distance from axis, θ angle between r and F',hl:1,b:1},
+{d:'Rotational equations of motion',f:'Δθ = {(ω_{f} + ω_{i})t|2}',s:'θ angle (rad), ω angular velocity, α angular acceleration',hl:1,b:1},
+{d:'',f:'ω_{f} = ω_{i} + αt',s:'',hl:1,b:1},
+{d:'',f:'Δθ = ω_{i}t + ½αt^{2}',s:'',hl:1,b:1},
+{d:'',f:'ω_{f}^{2} = ω_{i}^{2} + 2αΔθ',s:'',hl:1,b:1},
+{d:'Moment of inertia (point masses)',f:'I = Σmr^{2}',s:'r distance of each mass from the axis',hl:1,b:1},
+{d:'Newton\'s second law for rotation',f:'τ = Iα',s:'',hl:1,b:1},
+{d:'Angular momentum',f:'L = Iω',s:'',hl:1,b:1},
+{d:'Angular impulse',f:'ΔL = τΔt = Δ(Iω)',s:'',hl:1,b:1},
+{d:'Rotational kinetic energy',f:'E_{k} = ½Iω^{2} = {L^{2}|2I}',s:'',hl:1,b:1},
 {d:'Linking linear and angular motion',f:'s = rθ    v = ωr    a = αr',s:'',hl:1,x:1},
 {d:'Rolling without slipping',f:'E_{k,total} = ½mv^{2} + ½Iω^{2}',s:'with v = ωr',hl:1,x:1}
 ],
 B1:[
-{d:'Density',f:'ρ = {m|V}',s:''},
+{d:'Density',f:'ρ = {m|V}',s:'',b:1},
 {d:'Kelvin and Celsius',f:'T(K) = θ(°C) + 273',s:'',x:1},
-{d:'Average kinetic energy of a particle',f:'E_{k} = {3|2}k_{B}T',s:'k_{B} Boltzmann constant, T temperature in K'},
-{d:'Specific heat capacity',f:'Q = mcΔT',s:'c specific heat capacity, ΔT temperature change'},
-{d:'Specific latent heat',f:'Q = mL',s:'L specific latent heat of fusion or vaporization'},
-{d:'Thermal conduction',f:'{ΔQ|Δt} = kA{ΔT|Δx}',s:'k thermal conductivity, A cross-sectional area, ΔT/Δx temperature gradient'},
-{d:'Stefan–Boltzmann law',f:'L = σAT^{4}',s:'L luminosity, σ Stefan–Boltzmann constant, A surface area'},
-{d:'Apparent brightness',f:'b = {L|4πd^{2}}',s:'d distance from the source'},
-{d:'Wien\'s displacement law',f:'λ_{max}T = 2.9 × 10^{−3} m K',s:'λ_{max} peak wavelength'}
+{d:'Average kinetic energy of a particle',f:'E_{k} = {3|2}k_{B}T',s:'k_{B} Boltzmann constant, T temperature in K',b:1},
+{d:'Specific heat capacity',f:'Q = mcΔT',s:'c specific heat capacity, ΔT temperature change',b:1},
+{d:'Specific latent heat',f:'Q = mL',s:'L specific latent heat of fusion or vaporization',b:1},
+{d:'Thermal conduction',f:'{ΔQ|Δt} = kA{ΔT|Δx}',s:'k thermal conductivity, A cross-sectional area, ΔT/Δx temperature gradient',b:1},
+{d:'Stefan–Boltzmann law',f:'L = σAT^{4}',s:'L luminosity, σ Stefan–Boltzmann constant, A surface area',b:1},
+{d:'Apparent brightness',f:'b = {L|4πd^{2}}',s:'d distance from the source',b:1},
+{d:'Wien\'s displacement law',f:'λ_{max}T = 2.9 × 10^{−3} m K',s:'λ_{max} peak wavelength',b:1}
 ],
 B2:[
-{d:'Emissivity',f:'e = {power radiated per unit area|σT^{4}}',s:''},
-{d:'Albedo',f:'albedo = {total scattered power|total incident power}',s:''},
+{d:'Emissivity',f:'e = {power radiated per unit area|σT^{4}}',s:'',b:1},
+{d:'Albedo',f:'albedo = {total scattered power|total incident power}',s:'',b:1},
 {d:'Mean incoming intensity at a planet',f:'I_{mean} = {S|4}',s:'S solar constant'},
 {d:'Energy balance for a planet',f:'(1 − α){S|4} = eσT^{4}',s:'α albedo, e emissivity, T surface temperature',x:1}
 ],
 B3:[
-{d:'Pressure',f:'P = {F|A}',s:'F force perpendicular to area A'},
-{d:'Amount of substance',f:'n = {N|N_{A}}',s:'N number of particles, N_{A} Avogadro constant'},
-{d:'Fixed mass of gas',f:'{PV|T} = constant',s:'T in kelvin'},
-{d:'Ideal gas equation',f:'PV = Nk_{B}T = nRT',s:'R gas constant, k_{B} = R/N_{A}'},
-{d:'Kinetic theory pressure',f:'P = {1|3}ρv^{2}',s:'ρ gas density, v^{2} mean square speed'},
-{d:'Internal energy of a monatomic ideal gas',f:'U = {3|2}Nk_{B}T = {3|2}nRT',s:''},
+{d:'Pressure',f:'P = {F|A}',s:'F force perpendicular to area A',b:1},
+{d:'Amount of substance',f:'n = {N|N_{A}}',s:'N number of particles, N_{A} Avogadro constant',b:1},
+{d:'Fixed mass of gas',f:'{PV|T} = constant',s:'T in kelvin',b:1},
+{d:'Ideal gas equation',f:'PV = Nk_{B}T = nRT',s:'R gas constant, k_{B} = R/N_{A}',b:1},
+{d:'Kinetic theory pressure',f:'P = {1|3}ρv^{2}',s:'ρ gas density, v^{2} mean square speed',b:1},
+{d:'Internal energy of a monatomic ideal gas',f:'U = {3|2}Nk_{B}T = {3|2}nRT',s:'',b:1},
 {d:'Root mean square speed',f:'v_{rms} = √{{3k_{B}T|m}}',s:'m mass of one molecule',x:1}
 ],
 B4:[
-{d:'First law of thermodynamics',f:'Q = ΔU + W',s:'Q heat into gas, ΔU increase in internal energy, W work done by gas',hl:1},
-{d:'Work at constant pressure',f:'W = PΔV',s:'',hl:1},
-{d:'Change in internal energy',f:'ΔU = {3|2}Nk_{B}ΔT = {3|2}nRΔT',s:'',hl:1},
-{d:'Entropy change',f:'ΔS = {ΔQ|T}',s:'',hl:1},
-{d:'Entropy (microscopic)',f:'S = k_{B} ln Ω',s:'Ω number of microstates',hl:1},
-{d:'Adiabatic process (monatomic ideal gas)',f:'PV^{5/3} = constant',s:'',hl:1},
-{d:'Efficiency of a heat engine',f:'η = {useful work|input energy}',s:'',hl:1},
-{d:'Carnot efficiency',f:'η_{Carnot} = 1 − {T_{c}|T_{h}}',s:'T_{c}, T_{h} cold and hot reservoir temperatures in K',hl:1}
+{d:'First law of thermodynamics',f:'Q = ΔU + W',s:'Q heat into gas, ΔU increase in internal energy, W work done by gas',hl:1,b:1},
+{d:'Work at constant pressure',f:'W = PΔV',s:'',hl:1,b:1},
+{d:'Change in internal energy',f:'ΔU = {3|2}Nk_{B}ΔT = {3|2}nRΔT',s:'',hl:1,b:1},
+{d:'Entropy change',f:'ΔS = {ΔQ|T}',s:'',hl:1,b:1},
+{d:'Entropy (microscopic)',f:'S = k_{B} ln Ω',s:'Ω number of microstates',hl:1,b:1},
+{d:'Adiabatic process (monatomic ideal gas)',f:'PV^{5/3} = constant',s:'',hl:1,b:1},
+{d:'Efficiency of a heat engine',f:'η = {useful work|input energy}',s:'',hl:1,b:1},
+{d:'Carnot efficiency',f:'η_{Carnot} = 1 − {T_{c}|T_{h}}',s:'T_{c}, T_{h} cold and hot reservoir temperatures in K',hl:1,b:1}
 ],
 B5:[
-{d:'Current',f:'I = {Δq|Δt}',s:'q charge'},
-{d:'Potential difference',f:'V = {W|q}',s:'W work done'},
-{d:'Resistance',f:'R = {V|I}',s:''},
-{d:'Resistivity',f:'ρ = {RA|L}',s:'A cross-sectional area, L length'},
-{d:'Power',f:'P = IV = I^{2}R = {V^{2}|R}',s:''},
-{d:'Series resistors',f:'R_{s} = R_{1} + R_{2} + …',s:''},
-{d:'Parallel resistors',f:'{1|R_{p}} = {1|R_{1}} + {1|R_{2}} + …',s:''},
-{d:'Emf and internal resistance',f:'ε = I(R + r)',s:'ε emf, R external resistance, r internal resistance'},
+{d:'Current',f:'I = {Δq|Δt}',s:'q charge',b:1},
+{d:'Potential difference',f:'V = {W|q}',s:'W work done',b:1},
+{d:'Resistance',f:'R = {V|I}',s:'',b:1},
+{d:'Resistivity',f:'ρ = {RA|L}',s:'A cross-sectional area, L length',b:1},
+{d:'Power',f:'P = IV = I^{2}R = {V^{2}|R}',s:'',b:1},
+{d:'Series resistors',f:'R_{s} = R_{1} + R_{2} + …',s:'',b:1},
+{d:'Parallel resistors',f:'{1|R_{p}} = {1|R_{1}} + {1|R_{2}} + …',s:'',b:1},
+{d:'Emf and internal resistance',f:'ε = I(R + r)',s:'ε emf, R external resistance, r internal resistance',b:1},
 {d:'Terminal potential difference',f:'V = ε − Ir',s:'',x:1},
 {d:'Potential divider',f:'V_{out} = V_{in} {R_{2}|R_{1} + R_{2}}',s:'',x:1}
 ],
 C1:[
-{d:'Defining equation of SHM',f:'a = −ω^{2}x',s:'x displacement, ω angular frequency'},
-{d:'Period and frequency',f:'T = {1|f} = {2π|ω}',s:''},
-{d:'Mass–spring system',f:'T = 2π√{{m|k}}',s:'k spring constant'},
-{d:'Simple pendulum',f:'T = 2π√{{l|g}}',s:'l length, small angles only'},
-{d:'Displacement',f:'x = x_{0} sin(ωt + φ)',s:'x_{0} amplitude, φ phase angle',hl:1},
-{d:'Velocity',f:'v = ωx_{0} cos(ωt + φ)',s:'',hl:1},
-{d:'Velocity at displacement x',f:'v = ±ω√{x_{0}^{2} − x^{2}}',s:'',hl:1},
-{d:'Total energy',f:'E_{T} = ½mω^{2}x_{0}^{2}',s:'',hl:1},
-{d:'Potential energy',f:'E_{p} = ½mω^{2}x^{2}',s:'',hl:1},
+{d:'Defining equation of SHM',f:'a = −ω^{2}x',s:'x displacement, ω angular frequency',b:1},
+{d:'Period and frequency',f:'T = {1|f} = {2π|ω}',s:'',b:1},
+{d:'Mass–spring system',f:'T = 2π√{{m|k}}',s:'k spring constant',b:1},
+{d:'Simple pendulum',f:'T = 2π√{{l|g}}',s:'l length, small angles only',b:1},
+{d:'Displacement',f:'x = x_{0} sin(ωt + φ)',s:'x_{0} amplitude, φ phase angle',hl:1,b:1},
+{d:'Velocity',f:'v = ωx_{0} cos(ωt + φ)',s:'',hl:1,b:1},
+{d:'Velocity at displacement x',f:'v = ±ω√{x_{0}^{2} − x^{2}}',s:'',hl:1,b:1},
+{d:'Total energy',f:'E_{T} = ½mω^{2}x_{0}^{2}',s:'',hl:1,b:1},
+{d:'Potential energy',f:'E_{p} = ½mω^{2}x^{2}',s:'',hl:1,b:1},
 {d:'Maximum speed and acceleration',f:'v_{max} = ωx_{0}    a_{max} = ω^{2}x_{0}',s:'',hl:1,x:1}
 ],
 C2:[
-{d:'Wave speed',f:'v = fλ = {λ|T}',s:'f frequency, λ wavelength, T period'},
+{d:'Wave speed',f:'v = fλ = {λ|T}',s:'f frequency, λ wavelength, T period',b:1},
 {d:'Intensity and amplitude',f:'I ∝ A^{2}',s:'A amplitude',x:1}
 ],
 C3:[
-{d:'Snell\'s law',f:'{n_{1}|n_{2}} = {sin θ_{2}|sin θ_{1}} = {v_{2}|v_{1}}',s:'n refractive index, θ angle from the normal, v wave speed'},
+{d:'Snell\'s law',f:'{n_{1}|n_{2}} = {sin θ_{2}|sin θ_{1}} = {v_{2}|v_{1}}',s:'n refractive index, θ angle from the normal, v wave speed',b:1},
 {d:'Refractive index',f:'n = {c|v}',s:'',x:1},
 {d:'Critical angle',f:'sin θ_{c} = {n_{2}|n_{1}}',s:'',x:1},
-{d:'Constructive interference',f:'path difference = nλ',s:'n integer'},
-{d:'Destructive interference',f:'path difference = (n + ½)λ',s:''},
-{d:'Double slit fringe spacing',f:'s = {λD|d}',s:'D slit–screen distance, d slit separation'},
-{d:'Single slit first minimum',f:'θ = {λ|b}',s:'b slit width, θ in radians',hl:1},
-{d:'Diffraction grating',f:'nλ = d sin θ',s:'n order, d line spacing',hl:1}
+{d:'Constructive interference',f:'path difference = nλ',s:'n integer',b:1},
+{d:'Destructive interference',f:'path difference = (n + ½)λ',s:'',b:1},
+{d:'Double slit fringe spacing',f:'s = {λD|d}',s:'D slit–screen distance, d slit separation',b:1},
+{d:'Single slit first minimum',f:'θ = {λ|b}',s:'b slit width, θ in radians',hl:1,b:1},
+{d:'Diffraction grating',f:'nλ = d sin θ',s:'n order, d line spacing',hl:1,b:1}
 ],
 C4:[
 {d:'String fixed at both ends',f:'λ_{n} = {2L|n}    f_{n} = {nv|2L}',s:'n = 1, 2, 3 …',x:1},
@@ -459,45 +460,45 @@ C4:[
 {d:'Node spacing',f:'node to node = {λ|2}    node to antinode = {λ|4}',s:'',x:1}
 ],
 C5:[
-{d:'Doppler effect for light (v ≪ c)',f:'{Δf|f} = {Δλ|λ} ≈ {v|c}',s:'v relative speed of source and observer'},
-{d:'Moving source',f:'f′ = f{v|v ± u_{s}}',s:'u_{s} source speed, − approaching, + receding',hl:1},
-{d:'Moving observer',f:'f′ = f{v ± u_{o}|v}',s:'u_{o} observer speed, + approaching, − receding',hl:1}
+{d:'Doppler effect for light (v ≪ c)',f:'{Δf|f} = {Δλ|λ} ≈ {v|c}',s:'v relative speed of source and observer',b:1},
+{d:'Moving source',f:'f′ = f{v|v ± u_{s}}',s:'u_{s} source speed, − approaching, + receding',hl:1,b:1},
+{d:'Moving observer',f:'f′ = f{v ± u_{o}|v}',s:'u_{o} observer speed, + approaching, − receding',hl:1,b:1}
 ],
 D1:[
-{d:'Newton\'s law of gravitation',f:'F = G{Mm|r^{2}}',s:'r distance between centres'},
-{d:'Gravitational field strength',f:'g = {F|m} = G{M|r^{2}}',s:''},
+{d:'Newton\'s law of gravitation',f:'F = G{Mm|r^{2}}',s:'r distance between centres',b:1},
+{d:'Gravitational field strength',f:'g = {F|m} = G{M|r^{2}}',s:'',b:1},
 {d:'Kepler\'s third law (circular orbit)',f:'T^{2} = {4π^{2}|GM}r^{3}',s:'T ∝ r^{3/2} for the same central mass',x:1},
-{d:'Gravitational potential energy',f:'E_{p} = −G{m_{1}m_{2}|r}',s:'',hl:1},
-{d:'Gravitational potential',f:'V_{g} = −G{M|r}',s:'',hl:1},
-{d:'Field as potential gradient',f:'g = −{ΔV_{g}|Δr}',s:'',hl:1},
-{d:'Work done moving a mass',f:'W = mΔV_{g}',s:'',hl:1},
-{d:'Escape speed',f:'v_{esc} = √{{2GM|r}}',s:'',hl:1},
-{d:'Orbital speed',f:'v_{orbital} = √{{GM|r}}',s:'',hl:1},
+{d:'Gravitational potential energy',f:'E_{p} = −G{m_{1}m_{2}|r}',s:'',hl:1,b:1},
+{d:'Gravitational potential',f:'V_{g} = −G{M|r}',s:'',hl:1,b:1},
+{d:'Field as potential gradient',f:'g = −{ΔV_{g}|Δr}',s:'',hl:1,b:1},
+{d:'Work done moving a mass',f:'W = mΔV_{g}',s:'',hl:1,b:1},
+{d:'Escape speed',f:'v_{esc} = √{{2GM|r}}',s:'',hl:1,b:1},
+{d:'Orbital speed',f:'v_{orbital} = √{{GM|r}}',s:'',hl:1,b:1},
 {d:'Energy in a circular orbit',f:'E_{k} = {GMm|2r}    E_{total} = −{GMm|2r}',s:'',hl:1,x:1}
 ],
 D2:[
-{d:'Coulomb\'s law',f:'F = k{q_{1}q_{2}|r^{2}}',s:'k = 1/4πε_{0}'},
-{d:'Electric field strength',f:'E = {F|q}',s:'q test charge'},
+{d:'Coulomb\'s law',f:'F = k{q_{1}q_{2}|r^{2}}',s:'k = 1/4πε_{0}',b:1},
+{d:'Electric field strength',f:'E = {F|q}',s:'q test charge',b:1},
 {d:'Field of a point charge',f:'E = {kQ|r^{2}}',s:'',x:1},
-{d:'Uniform field between plates',f:'E = {V|d}',s:'V plate p.d., d plate separation'},
-{d:'Electric potential energy',f:'E_{p} = k{q_{1}q_{2}|r}',s:'',hl:1},
-{d:'Electric potential',f:'V_{e} = {kQ|r}',s:'',hl:1},
-{d:'Field as potential gradient',f:'E = −{ΔV_{e}|Δr}',s:'',hl:1},
-{d:'Work done moving a charge',f:'W = qΔV_{e}',s:'',hl:1}
+{d:'Uniform field between plates',f:'E = {V|d}',s:'V plate p.d., d plate separation',b:1},
+{d:'Electric potential energy',f:'E_{p} = k{q_{1}q_{2}|r}',s:'',hl:1,b:1},
+{d:'Electric potential',f:'V_{e} = {kQ|r}',s:'',hl:1,b:1},
+{d:'Field as potential gradient',f:'E = −{ΔV_{e}|Δr}',s:'',hl:1,b:1},
+{d:'Work done moving a charge',f:'W = qΔV_{e}',s:'',hl:1,b:1}
 ],
 D3:[
-{d:'Force on a moving charge',f:'F = qvB sin θ',s:'θ angle between v and B'},
-{d:'Force on a current-carrying wire',f:'F = BIL sin θ',s:'L length in the field'},
-{d:'Force between parallel wires',f:'{F|L} = μ_{0}{I_{1}I_{2}|2πr}',s:'r separation of the wires'},
+{d:'Force on a moving charge',f:'F = qvB sin θ',s:'θ angle between v and B',b:1},
+{d:'Force on a current-carrying wire',f:'F = BIL sin θ',s:'L length in the field',b:1},
+{d:'Force between parallel wires',f:'{F|L} = μ_{0}{I_{1}I_{2}|2πr}',s:'r separation of the wires',b:1},
 {d:'Radius of circular path',f:'r = {mv|qB}',s:'from qvB = mv^{2}/r',x:1},
 {d:'Period of circular path',f:'T = {2πm|qB}',s:'independent of speed',x:1},
 {d:'Velocity selector',f:'v = {E|B}',s:'from qE = qvB',x:1},
 {d:'Energy gained across a p.d.',f:'qV = ½mv^{2}',s:'',x:1}
 ],
 D4:[
-{d:'Magnetic flux',f:'Φ = BA cos θ',s:'θ angle between B and the normal to the area',hl:1},
-{d:'Faraday\'s law',f:'ε = −N{ΔΦ|Δt}',s:'N number of turns',hl:1},
-{d:'Moving straight conductor',f:'ε = BvL',s:'v speed perpendicular to B, L length',hl:1},
+{d:'Magnetic flux',f:'Φ = BA cos θ',s:'θ angle between B and the normal to the area',hl:1,b:1},
+{d:'Faraday\'s law',f:'ε = −N{ΔΦ|Δt}',s:'N number of turns',hl:1,b:1},
+{d:'Moving straight conductor',f:'ε = BvL',s:'v speed perpendicular to B, L length',hl:1,b:1},
 {d:'Peak emf of a rotating coil',f:'ε_{0} = NBAω',s:'ω angular speed of the coil',hl:1,x:1}
 ]
 };
@@ -555,13 +556,13 @@ function themeGrid(kind){return NUNITS.map(t=>'<section class="theme"><h2><span 
 function pnHTML(kind,k){const i=NORDER.indexOf(k),a=NORDER[i-1],b=NORDER[i+1],at='data-'+(kind=='notes'?'nunit':'funit');
   return '<div class="pn"><span>'+(a?'<button type="button" '+at+'="'+a+'">← '+a+' '+UNAME[a]+'</button>':'')+'</span><span>'+(b?'<button type="button" '+at+'="'+b+'">'+b+' '+UNAME[b]+' →</button>':'')+'</span></div>'}
 function notesUnit(k){return '<div class="notes">'+NOTES[k].map(s=>'<section class="nsec"><h3>'+inline(s.h)+'</h3><ul>'+s.b.map(x=>'<li>'+inline(x)+'</li>').join('')+'</ul>'+(s.t?'<p class="tip"><b>Exam tip</b>'+inline(s.t)+'</p>':'')+'</section>').join('')+'</div>'}
-function formulaRows(list){return '<div class="ftab">'+list.map(f=>'<div class="frow'+(f.d?'':' cont')+'"><div class="fd">'+(f.d?esc(f.d):'')+(f.s?'<small>'+inline(f.s)+'</small>':'')+((f.d&&f.hl)||f.x?'<span class="tags">'+(f.d&&f.hl?'<span class="tag hl">HL</span>':'')+(f.x?'<span class="tag x">Not in guide</span>':'')+'</span>':'')+'</div><div class="fx">'+fm(f.f)+'</div></div>').join('')+'</div>'}
-const LEGEND='<div class="legend"><span><span class="tag hl">HL</span>Higher level only</span><span><span class="tag x">Not in guide</span>Derived or useful result, not stated in the 2025 guide, so learn it</span></div>';
+function formulaRows(list){return '<div class="ftab">'+list.map(f=>'<div class="frow'+(f.d?'':' cont')+'"><div class="fd">'+(f.d?esc(f.d):'')+(f.s?'<small>'+inline(f.s)+'</small>':'')+((f.d&&(f.hl||f.b))||f.x?'<span class="tags">'+(f.d&&f.b?'<span class="tag bk">Data booklet</span>':'')+(f.d&&f.hl?'<span class="tag hl">HL</span>':'')+(f.x?'<span class="tag x">Not in guide</span>':'')+'</span>':'')+'</div><div class="fx">'+fm(f.f)+'</div></div>').join('')+'</div>'}
+const LEGEND='<div class="legend"><span><span class="tag bk">Data booklet</span>Given in the IB Physics data booklet in the exam</span><span><span class="tag hl">HL</span>Higher level only</span><span><span class="tag x">Not in guide</span>Derived or useful result, not stated in the 2025 guide, so learn it</span></div>';
 function constantsHTML(){return '<h2 class="fsec">Constants</h2><div class="ftab">'+CONSTANTS.map(c=>'<div class="frow"><div class="fd">'+esc(c[0])+'</div><div class="fx">'+fm(c[1])+'</div></div>').join('')+'</div>'}
 function renderStudy(){let h=tabsHTML(); const T=view.tab;
   if(view.name=='home'){
     h+=T=='notes'?'<h1>Content notes</h1><p class="lede">Condensed notes for every sub unit, built from your cheat sheets and the 2025 guide.</p>'
-      :'<h1>Formulas</h1><p class="lede">Every formula in the 2025 guide for themes A to D, grouped by sub unit, with what each symbol means.</p><button type="button" class="wide" data-fall>View all formulas on one page</button>';
+      :'<h1>Formulas</h1><p class="lede">Every formula in the 2025 guide for themes A to D, grouped by sub unit, with what each symbol means. Anything without a Data booklet tag must be memorised.</p><button type="button" class="wide" data-fall>View all formulas on one page</button>';
     h+=themeGrid(T);
   } else if(view.name=='all'){
     h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl">All formulas</div></div>'+LEGEND;
@@ -618,7 +619,7 @@ const keep=p=>view.filter=='todo'?!S.done[p.id]:view.filter=='rev'?!!S.rev[p.id]
 function render(){
   $('#wrap').classList.toggle('in-unit',view.name!='home'); if(view.tab!='ws')return renderStudy(); let h=tabsHTML();
   if(view.name=='home'){
-    h+='<h1>Physics Worksheets</h1><p class="lede">Every worksheet question, sorted by syllabus theme and sub unit. Tick parts off as you finish them and flag anything to come back to.</p>';
+    h+='<h1>IBDP Physics By Sanjith Chellamuthu</h1><p class="lede">Every worksheet question, sorted by syllabus theme and sub unit. Tick parts off as you finish them and flag anything to come back to.</p>';
     h+=DATA.themes.map(t=>'<section class="theme"><h2><span class="tile">'+t.k+'</span>'+(t.k=='+'?t.n:'Theme '+t.k+' <span class="sub">'+t.n+'</span>')+'</h2><div class="units">'+t.units.map(u=>{
       const ps=unitParts(u),n=count(ps,S.done),r=count(ps,S.rev);
       return ps.length?'<button type="button" class="unit" data-unit="'+u.k+'"><span class="code">'+u.k+'</span><span class="name">'+u.n+'</span><span class="meta"><span>'+n+' / '+ps.length+' done</span><span>'+(r?'⚑ '+r:'')+'</span></span><div class="bar"><i style="width:'+(100*n/ps.length)+'%"></i></div></button>'

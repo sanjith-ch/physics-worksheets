@@ -1,4 +1,4 @@
-# Physics Worksheets
+# IBDP Physics By Sanjith Chellamuthu
 
 Revision site for IB Physics: every worksheet question sorted by theme (A to D) and sub unit, with hidden model answers, done and review marks, a progress tracker and an exam countdown.
 

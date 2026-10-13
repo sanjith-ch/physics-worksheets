@@ -107,6 +107,11 @@ aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:flex
 .ans ul{margin:0 0 7px;padding-left:20px}.ans li{margin-bottom:4px}
 .ans .letter{font-family:var(--display);font-size:22px;font-weight:700;margin-bottom:6px}
 .ans .letter span{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:8px}
+.qfull{padding:12px 16px 14px;border-top:1px dashed var(--line);background:var(--sunken)}
+.b.whole{width:100%;justify-content:center;font-weight:600}
+.b.whole[aria-expanded="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.wholeq{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px}
+.wholeq .eyebrow{margin-bottom:8px}
 .empty{color:var(--muted);padding:30px 0;text-align:center}
 /* top tabs */
 .tabs{display:flex;gap:4px;background:var(--sunken);border-radius:10px;padding:4px;margin-bottom:18px;width:max-content;max-width:100%}
@@ -222,7 +227,8 @@ B1:[
 {h:'Specific heat and latent heat',b:['Heating without a change of state: Q = mcΔT, where c is the specific heat capacity.','Change of state at constant temperature: Q = mL, where L is the specific latent heat.','During a phase change the energy goes into intermolecular potential energy, so the average kinetic energy and temperature stay constant.','Latent heat of vaporization is larger than of fusion, because particles must be separated completely.'],t:'In mixing problems: energy lost by the hot body = energy gained by the cold body. Include every stage (warming the ice, melting it, warming the melt water).'},
 {h:'Conduction, convection, radiation',b:['**Conduction:** energy passed by particle collisions (and free electrons in metals). Rate ΔQ/Δt = kA ΔT/Δx.','**Convection:** bulk movement of a fluid caused by density differences. Warm fluid rises, cool fluid sinks. Not possible in solids.','**Radiation:** emission of electromagnetic waves. Needs no medium, so it is the only way energy crosses space.']},
 {h:'Black body radiation',b:['A black body absorbs all radiation that hits it and is the best possible emitter at its temperature.','Stefan–Boltzmann law: L = σAT⁴, where L is the luminosity (total power emitted).','Wien\'s law: λ_{max}T = 2.9 × 10^{−3} m K. Hotter bodies peak at shorter wavelengths, which is how star temperatures are found.']},
-{h:'Luminosity and apparent brightness',b:['Luminosity L is the total power a body emits. It is intrinsic.','Apparent brightness b is the power received per unit area at a distance d: b = L/4πd².','Brightness follows an inverse square law: doubling the distance quarters the brightness.']}
+{h:'Luminosity and apparent brightness',b:['Luminosity L is the total power a body emits. It is intrinsic.','Apparent brightness b is the power received per unit area at a distance d: b = L/4πd².','Brightness follows an inverse square law: doubling the distance quarters the brightness.']},
+{h:'Solar constant',b:['The solar constant S is the intensity of the Sun\'s radiation at Earth\'s mean distance from the Sun, at the top of the atmosphere, on a surface facing the Sun. S = 1.36 × 10^{3} W m^{−2} (given in the data booklet constants).','It is the apparent brightness of the Sun seen from Earth: S = L_{☉}/4πd², with L_{☉} ≈ 3.8 × 10^{26} W and d = 1 AU = 1.50 × 10^{11} m.','Earth catches sunlight over a disc of area πR² but spreads it over its whole surface of area 4πR², so the mean incoming intensity is S/4 ≈ 340 W m^{−2}.','Mean intensity absorbed = (1 − α) × S/4, where α is the albedo. This feeds into the B2 energy balance.','A planet at distance d from the Sun receives S × (1 AU / d)², by the inverse square law.'],t:'S is the value at the top of the atmosphere on a surface facing the Sun. Divide by 4 whenever the question wants the average over the whole planet.'}
 ],
 B2:[
 {h:'Energy balance',b:['Earth\'s temperature settles where incoming solar power absorbed = outgoing thermal power emitted.','The equilibrium temperature of a planet comes from setting these equal.']},
@@ -388,6 +394,10 @@ B1:[
 {d:'Thermal conduction',f:'{ΔQ|Δt} = kA{ΔT|Δx}',s:'k thermal conductivity, A cross-sectional area, ΔT/Δx temperature gradient',b:1},
 {d:'Stefan–Boltzmann law',f:'L = σAT^{4}',s:'L luminosity, σ Stefan–Boltzmann constant, A surface area',b:1},
 {d:'Apparent brightness',f:'b = {L|4πd^{2}}',s:'d distance from the source',b:1},
+{d:'Solar constant',f:'S = {L_{☉}|4πd^{2}} = 1.36 × 10^{3} W m^{−2}',s:'L_{☉} luminosity of the Sun, d Sun to Earth distance (1 AU). The value of S is in the data booklet constants',x:1},
+{d:'Solar power intercepted by Earth',f:'P = SπR_{E}^{2}',s:'R_{E} radius of Earth (sunlight is caught by a disc of area πR²)',x:1},
+{d:'Mean incoming intensity at a planet',f:'I_{mean} = {S|4}',s:'disc area πR² spread over sphere area 4πR²'},
+{d:'Mean absorbed intensity',f:'I_{abs} = (1 − α){S|4}',s:'α albedo',x:1},
 {d:'Wien\'s displacement law',f:'λ_{max}T = 2.9 × 10^{−3} m K',s:'λ_{max} peak wavelength',b:1}
 ],
 B2:[
@@ -575,7 +585,7 @@ function renderStudy(){let h=tabsHTML(); const T=view.tab;
   }
   main.innerHTML=h; tracker()}
 function load(){try{const j=JSON.parse(localStorage.getItem(LS)||'null'); if(j) S=norm(j)}catch(e){}}
-function norm(j){const o={done:{},rev:{},t:+j.t||0};(j.done||[]).forEach(i=>{if(PARTS[i])o.done[i]=1});(j.rev||[]).forEach(i=>{if(PARTS[i])o.rev[i]=1});return o}
+function norm(j){const o={done:{},rev:{},t:+j.t||0};(j.done||[]).forEach(i=>{if(typeof i=='string')o.done[i]=1});(j.rev||[]).forEach(i=>{if(typeof i=='string')o.rev[i]=1});return o}
 const pack=()=>({done:Object.keys(S.done),rev:Object.keys(S.rev),t:S.t});
 let ref=null,timer=null,busy=false,dirty=false;
 function save(){S.t=Date.now(); try{localStorage.setItem(LS,JSON.stringify(pack()))}catch(e){} if(ref){dirty=true;clearTimeout(timer);timer=setTimeout(push,900)}}
@@ -593,6 +603,7 @@ async function connect(){try{
   else if(S.t){dirty=true;push()}
   $('#sync').textContent='Progress is saved to your account.';
 }catch(e){}}
+const QBY={}; Object.values(PARTS).forEach(x=>{QBY[x.q.id]=x.q});
 const count=(ps,map)=>ps.reduce((n,p)=>n+(map[p.id]?1:0),0);
 const unitParts=u=>u.q.flatMap(q=>q.p);
 function tracker(){
@@ -613,8 +624,9 @@ function partHTML(p,q){
    +'<button type="button" class="b flag" data-act="flag" aria-pressed="'+f+'"><span>⚑</span>Review</button>'
    +'<button type="button" class="b show" data-act="show" aria-expanded="false">Show answer</button></div>'
    +'<div class="ans" hidden></div></div>'}
-function qHTML(q,ps){const m=q.p.reduce((a,p)=>a+p.m,0);
-  return '<section class="q"><header><h3>'+esc(q.t)+'</h3><span>'+(q.p.length>1?q.p.length+' parts · ':'')+m+(m==1?' mark':' marks')+'</span></header>'+ps.map(p=>partHTML(p,q)).join('')+'</section>'}
+function cropHTML(q,y,w,h){return '<div class="scroll"><div class="crop" style="width:'+Math.round(w*SC)+'px;min-width:min('+Math.round(w*SC)+'px,max(100%,'+Math.round(w*0.56)+'px));max-width:100%;aspect-ratio:'+w+'/'+h+'"><img loading="lazy" decoding="async" alt="'+esc(q.t)+'" src="q/'+q.id+'.webp" style="width:'+(100*q.W/w)+'%;top:'+(-100*y/h)+'%"></div></div>'}
+function qHTML(q,ps,full){const m=q.p.reduce((a,p)=>a+p.m,0);
+  return '<section class="q"><header><h3>'+esc(q.t)+'</h3><span>'+(q.p.length>1?q.p.length+' parts · ':'')+m+(m==1?' mark':' marks')+'</span></header>'+ps.map(p=>partHTML(p,q)).join('')+(full&&q.p.length>1?'<div class="qfull"><button type="button" class="b whole" data-whole="'+q.id+'" aria-expanded="false">Show complete question</button><div class="wholeq" hidden></div></div>':'')+'</section>'}
 const keep=p=>view.filter=='todo'?!S.done[p.id]:view.filter=='rev'?!!S.rev[p.id]:true;
 function render(){
   $('#wrap').classList.toggle('in-unit',view.name!='home'); if(view.tab!='ws')return renderStudy(); let h=tabsHTML();
@@ -629,12 +641,12 @@ function render(){
     h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl"><small>'+u.k+'</small>'+u.n+'</div><span class="cnt" id="ucnt"></span><div class="chips">'+chip('all','All')+chip('todo','To do')+chip('rev','Review')+'</div></div>';
     let sec=null,any=false;
     u.q.forEach(q=>{const ps=q.p.filter(keep); if(!ps.length)return; any=true;
-      if(q.s!==sec){sec=q.s; if(sec)h+='<h2 class="sec">'+esc(sec)+'</h2>'} h+=qHTML(q,ps)});
+      if(q.s!==sec){sec=q.s; if(sec)h+='<h2 class="sec">'+esc(sec)+'</h2>'} h+=qHTML(q,ps,view.filter=='rev')});
     if(!any)h+='<p class="empty">'+(view.filter=='todo'?'Everything in this sub unit is done.':'Nothing in this sub unit is marked for review.')+'</p>';
   } else {
     h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl">Marked for review</div></div>'; let any=false;
     DATA.themes.forEach(t=>t.units.forEach(u=>{const qs=u.q.map(q=>[q,q.p.filter(p=>S.rev[p.id])]).filter(x=>x[1].length); if(!qs.length)return; any=true;
-      h+='<h2 class="sec">'+u.k+' '+u.n+'</h2>'+qs.map(x=>qHTML(x[0],x[1])).join('')}));
+      h+='<h2 class="sec">'+u.k+' '+u.n+'</h2>'+qs.map(x=>qHTML(x[0],x[1],true)).join('')}));
     if(!any)h+='<p class="empty">Nothing is marked for review yet. Use the ⚑ Review button on any question part.</p>';
   }
   main.innerHTML=h; tracker()}
@@ -649,6 +661,9 @@ document.addEventListener('click',e=>{
   if('home' in b.dataset)return go({name:'home',unit:null});
   if(b.id=='revBtn')return go({tab:'ws',name:'review',unit:null});
   if(b.dataset.filter){view.filter=b.dataset.filter;return render()}
+  if(b.dataset.whole){const q=QBY[b.dataset.whole],box=b.nextElementSibling,open=box.hidden;
+    if(open&&!box.innerHTML)box.innerHTML='<p class="eyebrow">Complete question</p>'+cropHTML(q,0,q.W,q.H);
+    box.hidden=!open;b.setAttribute('aria-expanded',open);b.textContent=open?'Hide complete question':'Show complete question';return}
   const el=b.closest('.part'); if(!el)return; const id=el.dataset.id,act=b.dataset.act;
   if(act=='show'){const a=el.querySelector('.ans'),open=a.hidden;
     if(open&&!a.innerHTML)a.innerHTML='<p class="eyebrow">Model answer</p>'+fmt(PARTS[id].p.a);

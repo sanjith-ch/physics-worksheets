@@ -146,6 +146,19 @@ aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:flex
 .gap{display:inline-block;width:1.4em}
 .rs{font-size:1.3em;vertical-align:middle;line-height:1}
 .tags{display:block;margin-top:2px}
+.wides{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}.wides .wide{margin:0}
+.wide.alt{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.sitab{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto;margin-bottom:22px}
+.si{width:100%;border-collapse:collapse;font-size:14px}
+.si th{text-align:left;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--sunken);padding:10px 14px;white-space:nowrap}
+.si td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:middle}
+.si td.qn{font-weight:600;min-width:120px}.si td.qn small{display:block;font-family:var(--mono);font-weight:500;color:var(--muted);font-size:11.5px;margin-top:2px}
+.si td.un{color:var(--done);font-weight:600}
+.si td.sy{color:var(--flag);font-family:var(--math);font-size:19px;font-weight:600;white-space:nowrap}
+.si td.bu{color:var(--accent);font-family:var(--math);font-size:18px;white-space:nowrap}
+.si td.sy .mu{display:none;font-family:var(--body);font-size:12px;font-weight:600;color:var(--done);white-space:normal;margin-top:2px}
+@media (max-width:620px){.si th:nth-child(2),.si td.un{display:none}.si td.sy .mu{display:block}.si th,.si td{padding:9px 10px}.si td.bu{font-size:16px}}
+.sinote{color:var(--muted);font-size:13.5px;margin:-8px 0 22px}
 .fsec{font-family:var(--display);font-size:18px;font-weight:700;margin:26px 0 10px;display:flex;align-items:baseline;gap:8px}
 .fsec small{font-family:var(--mono);color:var(--accent);font-size:14px}
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:0 0 18px}
@@ -529,6 +542,30 @@ const CONSTANTS=[
 ['Solar constant','S = 1.36 × 10^{3} W m^{−2}']
 ];
 
+// SI units used in themes A to D (base units the 2025 guide lists, and the named derived units in the syllabus).
+const SI_BASE=[
+['Mass','kilogram','kg'],
+['Length','metre','m'],
+['Time','second','s'],
+['Electric current','ampere','A'],
+['Temperature','kelvin','K'],
+['Amount of substance','mole','mol']
+];
+const SI_DERIVED=[
+['Force','newton','N','kg m s^{−2}','A2'],
+['Pressure','pascal','Pa','kg m^{−1} s^{−2}','B3'],
+['Energy / work / heat','joule','J','kg m^{2} s^{−2}','A3'],
+['Power','watt','W','kg m^{2} s^{−3}','A3'],
+['Frequency','hertz','Hz','s^{−1}','C1, C2'],
+['Electric charge','coulomb','C','A s','B5'],
+['Potential difference / emf','volt','V','kg m^{2} s^{−3} A^{−1}','B5'],
+['Resistance','ohm','Ω','kg m^{2} s^{−3} A^{−2}','B5'],
+['Magnetic field strength (flux density)','tesla','T','kg s^{−2} A^{−1}','D3'],
+['Magnetic flux','weber','Wb','kg m^{2} s^{−2} A^{−1}','D4 (HL)'],
+['Intensity','watt per square metre','W m^{−2}','kg s^{−3}','B1, C2'],
+['Plane angle','radian','rad','m m^{−1} = 1','A2, A4']
+];
+
 const EXAM=Date.UTC(2026,9,14,1,30,0); // 14 Oct 2026 07:00 IST
 const SC=0.8, LS='physws-v1';
 const $=s=>document.querySelector(s), main=$('#main');
@@ -569,14 +606,21 @@ function notesUnit(k){return '<div class="notes">'+NOTES[k].map(s=>'<section cla
 function formulaRows(list){return '<div class="ftab">'+list.map(f=>'<div class="frow'+(f.d?'':' cont')+'"><div class="fd">'+(f.d?esc(f.d):'')+(f.s?'<small>'+inline(f.s)+'</small>':'')+((f.d&&(f.hl||f.b))||f.x?'<span class="tags">'+(f.d&&f.b?'<span class="tag bk">Data booklet</span>':'')+(f.d&&f.hl?'<span class="tag hl">HL</span>':'')+(f.x?'<span class="tag x">Not in guide</span>':'')+'</span>':'')+'</div><div class="fx">'+fm(f.f)+'</div></div>').join('')+'</div>'}
 const LEGEND='<div class="legend"><span><span class="tag bk">Data booklet</span>Given in the IB Physics data booklet in the exam</span><span><span class="tag hl">HL</span>Higher level only</span><span><span class="tag x">Not in guide</span>Derived or useful result, not stated in the 2025 guide, so learn it</span></div>';
 function constantsHTML(){return '<h2 class="fsec">Constants</h2><div class="ftab">'+CONSTANTS.map(c=>'<div class="frow"><div class="fd">'+esc(c[0])+'</div><div class="fx">'+fm(c[1])+'</div></div>').join('')+'</div>'}
+function siHTML(){
+  const row=(c,i)=>'<tr><td class="qn">'+esc(c[0])+(c[4]?'<small>'+esc(c[4])+'</small>':'')+'</td><td class="un">'+esc(c[1])+'</td><td class="sy">'+fm(c[2])+'<small class="mu">'+esc(c[1])+'</small></td>'+(c[3]!==undefined?'<td class="bu">'+fm(c[3])+'</td>':'')+'</tr>';
+  return '<h2 class="fsec">SI base units</h2><div class="sitab"><table class="si"><thead><tr><th>Physical quantity</th><th>SI unit</th><th>Symbol</th></tr></thead><tbody>'+SI_BASE.map(row).join('')+'</tbody></table></div>'
+   +'<h2 class="fsec">SI derived units</h2><div class="sitab"><table class="si"><thead><tr><th>Physical quantity</th><th>SI unit</th><th>Symbol</th><th>In SI base units</th></tr></thead><tbody>'+SI_DERIVED.map(row).join('')+'</tbody></table></div>'
+   +'<p class="sinote">Every derived unit can be written using the base units kg, m, s, A, K and mol. The small code under each quantity is the sub unit where it comes up.</p>'}
 function renderStudy(){let h=tabsHTML(); const T=view.tab;
   if(view.name=='home'){
     h+=T=='notes'?'<h1>Content notes</h1><p class="lede">Condensed notes for every sub unit, built from your cheat sheets and the 2025 guide.</p>'
-      :'<h1>Formulas</h1><p class="lede">Every formula in the 2025 guide for themes A to D, grouped by sub unit, with what each symbol means. Anything without a Data booklet tag must be memorised.</p><button type="button" class="wide" data-fall>View all formulas on one page</button>';
+      :'<h1>Formulas</h1><p class="lede">Every formula in the 2025 guide for themes A to D, grouped by sub unit, with what each symbol means. Anything without a Data booklet tag must be memorised.</p><div class="wides"><button type="button" class="wide" data-fall>View all formulas on one page</button><button type="button" class="wide alt" data-si>SI units</button></div>';
     h+=themeGrid(T);
   } else if(view.name=='all'){
     h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl">All formulas</div></div>'+LEGEND;
-    NORDER.forEach(k=>{h+='<h2 class="fsec"><small>'+k+'</small>'+UNAME[k]+'</h2>'+formulaRows(FORMULAS[k])}); h+=constantsHTML();
+    NORDER.forEach(k=>{h+='<h2 class="fsec"><small>'+k+'</small>'+UNAME[k]+'</h2>'+formulaRows(FORMULAS[k])}); h+=constantsHTML()+siHTML();
+  } else if(view.name=='si'){
+    h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl">SI units</div></div>'+siHTML();
   } else {
     const k=view.unit;
     h+='<div class="top"><button type="button" class="back" data-home>← All units</button><div class="ttl"><small>'+k+'</small>'+UNAME[k]+'</div></div>';
@@ -657,6 +701,7 @@ document.addEventListener('click',e=>{
   if(b.dataset.nunit)return go({tab:'notes',name:'unit',unit:b.dataset.nunit});
   if(b.dataset.funit)return go({tab:'formulas',name:'unit',unit:b.dataset.funit});
   if('fall' in b.dataset)return go({tab:'formulas',name:'all',unit:null});
+  if('si' in b.dataset)return go({tab:'formulas',name:'si',unit:null});
   if(b.dataset.unit)return go({tab:'ws',name:'unit',unit:b.dataset.unit,filter:'all'});
   if('home' in b.dataset)return go({name:'home',unit:null});
   if(b.id=='revBtn')return go({tab:'ws',name:'review',unit:null});
@@ -673,7 +718,7 @@ document.addEventListener('click',e=>{
   if(act=='done')b.querySelector('.box').textContent=on?'✓':'';
   save(); tracker()});
 load();
-try{const v=JSON.parse(localStorage.getItem(LS+'-view')||'null'); if(v){v.tab=v.tab||'ws'; const ok=v.tab=='ws'?(v.name=='home'||v.name=='review'||(UNITS[v.unit]&&!UNITS[v.unit].hide)):(v.name=='home'||v.name=='all'||NOTES[v.unit]); if(ok)Object.assign(view,v)}}catch(e){}
+try{const v=JSON.parse(localStorage.getItem(LS+'-view')||'null'); if(v){v.tab=v.tab||'ws'; const ok=v.tab=='ws'?(v.name=='home'||v.name=='review'||(UNITS[v.unit]&&!UNITS[v.unit].hide)):(v.name=='home'||v.name=='all'||v.name=='si'||NOTES[v.unit]); if(ok)Object.assign(view,v)}}catch(e){}
 render(); tick(); setInterval(tick,1000); connect();
 </script>
 
